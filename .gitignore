@@ -2,7 +2,4 @@ node_modules/
 out/
 .vscode-test/
 *.vsix
-<<<<<<< HEAD
 junks/
-=======
->>>>>>> ad03e7c710a40ce198d28028c20ed992420e0439

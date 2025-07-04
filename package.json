@@ -3,17 +3,10 @@
   "displayName": "Codx AI Code Assistant",
   "description": "AI-powered code assistant using Mistral AI's Codestral model",
   "version": "0.0.1",
-<<<<<<< HEAD
   "publisher": "sourcegraph",
   "repository": {
     "type": "git",
     "url": "https://github.com/petrjoe/codx"
-=======
-  "publisher": "your-publisher-id",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/your-username/codx"
->>>>>>> ad03e7c710a40ce198d28028c20ed992420e0439
   },
   "engines": {
     "vscode": "^1.99.0"
@@ -33,16 +26,9 @@
     "codestral"
   ],
   "activationEvents": [
-<<<<<<< HEAD
     "onStartupFinished"
   ],
   "main": "./dist/extension.js",
-=======
-    "*",
-    "onStartupFinished"
-  ],
-  "main": "./out/extension.js",
->>>>>>> ad03e7c710a40ce198d28028c20ed992420e0439
   "contributes": {
     "configuration": {
       "title": "Codx AI",
@@ -65,11 +51,7 @@
         },
         "codx.temperature": {
           "type": "number",
-<<<<<<< HEAD
           "default": 0.5,
-=======
-          "default": 0.7,
->>>>>>> ad03e7c710a40ce198d28028c20ed992420e0439
           "minimum": 0,
           "maximum": 1,
           "description": "Temperature for AI responses (0 = deterministic, 1 = creative)"
@@ -186,16 +168,10 @@
   },
   "devDependencies": {
     "@types/vscode": "^1.99.0",
-<<<<<<< HEAD
     "@types/node": "^20.14.0",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.14.1",
-=======
-    "@types/node": "20.x",
-    "@typescript-eslint/eslint-plugin": "^7.14.1",
-    "@typescript-eslint/parser": "^7.11.0",
->>>>>>> ad03e7c710a40ce198d28028c20ed992420e0439
     "eslint": "^8.57.0",
     "typescript": "^5.4.5"
   },

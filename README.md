@@ -100,6 +100,11 @@ A powerful Visual Studio Code extension that integrates Mistral AI's Codestral m
    - In VS Code: `Ctrl+Shift+P` → "Extensions: Install from VSIX..."
    - Select the generated `.vsix` file
 
+4. Install the created .vsix file with:
+  ```bash
+    code --install-extension codx.vsix
+  ```
+
 ## ⚙️ Configuration
 
 1. **Open VS Code Settings** (`Ctrl+,` or `Cmd+,`)
@@ -186,22 +191,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - The VS Code team for the excellent extension API
 
 ---
-
-
-
-## ✅ Optional: Package and Install as VSIX
-## If you want to share or install manually:
-
-## 1. Install the vsce tool:
-- npm install -g vsce
-
-## 2. Package your extension:
-- vsce package
-
-## 3. This creates a .vsix file. Install it by:
-
-code --install-extension your-extension-name.vsix
-
 
 **Made with ❤️ by the Codx team**
 

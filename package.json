@@ -1,0 +1,183 @@
+{
+  "name": "codx",
+  "displayName": "Codx AI Code Assistant",
+  "description": "AI-powered code assistant using Mistral AI's Codestral model",
+  "version": "0.0.1",
+  "publisher": "sourcegraph",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petrjoe/codx"
+  },
+  "engines": {
+    "vscode": "^1.99.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "ai",
+    "assistant",
+    "code",
+    "completion",
+    "mistral",
+    "codestral"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Codx AI",
+      "properties": {
+        "codx.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Mistral AI API key for Codestral model",
+          "markdownDescription": "Get your API key from [Mistral AI Console](https://console.mistral.ai/)"
+        },
+        "codx.model": {
+          "type": "string",
+          "default": "codestral-latest",
+          "enum": [
+            "codestral-latest",
+            "codestral-2405",
+            "mistral-large-latest"
+          ],
+          "description": "Mistral AI model to use"
+        },
+        "codx.temperature": {
+          "type": "number",
+          "default": 0.5,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Temperature for AI responses (0 = deterministic, 1 = creative)"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "codx.refactorCode",
+        "title": "Refactor Code",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.explainCode",
+        "title": "Explain Code",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.formatCode",
+        "title": "Format Code",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.fixCode",
+        "title": "Fix Code Issue",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.askWithFileContext",
+        "title": "Ask with File Context",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.openChat",
+        "title": "Open AI Chat",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.contextRefactor",
+        "title": "🤖 Refactor with AI",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.contextExplain",
+        "title": "🤖 Explain with AI",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.contextFormat",
+        "title": "🤖 Format with AI",
+        "category": "Codx AI"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codx.contextRefactor",
+          "when": "editorHasSelection",
+          "group": "1_modification@1"
+        },
+        {
+          "command": "codx.contextExplain",
+          "when": "editorTextFocus",
+          "group": "1_modification@2"
+        },
+        {
+          "command": "codx.contextFormat",
+          "when": "editorTextFocus",
+          "group": "1_modification@3"
+        }
+      ],
+      "commandPalette": [
+        { "command": "codx.refactorCode" },
+        { "command": "codx.explainCode" },
+        { "command": "codx.formatCode" },
+        { "command": "codx.fixCode" },
+        { "command": "codx.askWithFileContext" },
+        { "command": "codx.openChat" }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "codx.openChat",
+        "key": "ctrl+alt+i",
+        "mac": "cmd+alt+i"
+      },
+      {
+        "command": "codx.refactorCode",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codx.explainCode",
+        "key": "ctrl+alt+e",
+        "mac": "cmd+alt+e",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codx.formatCode",
+        "key": "ctrl+alt+f",
+        "mac": "cmd+alt+f",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.99.0",
+    "@types/node": "^20.14.0",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.14.1",
+    "@typescript-eslint/parser": "^7.14.1",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@langchain/mistralai": "^0.0.26",
+    "@langchain/core": "^0.2.0",
+    "uuid": "^10.0.0"
+  }
+}

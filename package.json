@@ -49,12 +49,13 @@
         "watch": "tsc -watch -p ./"
     },
     "dependencies": {
+        "@langchain/mistralai": "^0.2.1",
         "@mistralai/mistralai": "^1.7.2",
         "uuid": "^9.0.1"
     },
     "devDependencies": {
-        "@types/vscode": "^1.99.0",
         "@types/node": "^18.0.0",
+        "@types/vscode": "^1.99.0",
         "typescript": "^5.5.4"
     }
 }

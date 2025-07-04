@@ -1,0 +1,60 @@
+{
+    "name": "codx",
+    "displayName": "Codx AI Code Assistant",
+    "description": "AI-powered code completion, suggestions, refactoring, and chat using Mistral AI",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.99.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage",
+        "onCommand:codx.refactorCode",
+        "onChatParticipant:codx.codeChat"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "codx.refactorCode",
+                "title": "Codx AI: Refactor Code"
+            }
+        ],
+        "chatParticipants": [
+            {
+                "id": "codx.codeChat",
+                "name": "codeChat",
+                "fullName": "Codx AI Code Chat",
+                "description": "Chat about your code or mention files with #file",
+                "isSticky": true
+            }
+        ],
+        "configuration": {
+            "title": "Codx AI",
+            "properties": {
+                "codx.apiKey": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Mistral AI API key for authentication"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./"
+    },
+    "dependencies": {
+        "@mistralai/mistralai": "^1.7.2",
+        "uuid": "^9.0.1"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.99.0",
+        "@types/node": "^18.0.0",
+        "typescript": "^5.5.4"
+    }
+}

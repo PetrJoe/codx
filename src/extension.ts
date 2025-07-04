@@ -29,7 +29,7 @@ export async function activate(context: vscode.ExtensionContext) {
         apiKey,
         client: new ChatMistralAI({
             apiKey,
-            modelName: 'codestral-latest', // Fixed: Use codestral-latest instead of mistral-tiny
+            modelName: 'codestral-2501', // Fixed: Use codestral-latest instead of mistral-tiny
             temperature: 0.7,
         }),
         diagnostics: vscode.languages.createDiagnosticCollection('codx')

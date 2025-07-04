@@ -187,60 +187,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+
+
+## ✅ Optional: Package and Install as VSIX
+## If you want to share or install manually:
+
+## 1. Install the vsce tool:
+- npm install -g vsce
+
+## 2. Package your extension:
+- vsce package
+
+## 3. This creates a .vsix file. Install it by:
+
+code --install-extension your-extension-name.vsix
+
+
 **Made with ❤️ by the Codx team**
 
 *Happy coding with AI! 🤖✨*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

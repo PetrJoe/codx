@@ -28,7 +28,7 @@
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./dist/extension.js",
+  "main": "./out/extension.js",
   "contributes": {
     "configuration": {
       "title": "Codx AI",
@@ -124,12 +124,24 @@
         }
       ],
       "commandPalette": [
-        { "command": "codx.refactorCode" },
-        { "command": "codx.explainCode" },
-        { "command": "codx.formatCode" },
-        { "command": "codx.fixCode" },
-        { "command": "codx.askWithFileContext" },
-        { "command": "codx.openChat" }
+        {
+          "command": "codx.refactorCode"
+        },
+        {
+          "command": "codx.explainCode"
+        },
+        {
+          "command": "codx.formatCode"
+        },
+        {
+          "command": "codx.fixCode"
+        },
+        {
+          "command": "codx.askWithFileContext"
+        },
+        {
+          "command": "codx.openChat"
+        }
       ]
     },
     "keybindings": [
@@ -167,17 +179,17 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.99.0",
     "@types/node": "^20.14.0",
     "@types/uuid": "^10.0.0",
+    "@types/vscode": "1.99.0",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.14.1",
     "eslint": "^8.57.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@langchain/mistralai": "^0.0.26",
     "@langchain/core": "^0.2.0",
+    "@langchain/mistralai": "^0.0.26",
     "uuid": "^10.0.0"
   }
 }

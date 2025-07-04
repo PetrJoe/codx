@@ -587,284 +587,280 @@ export async function activate(context: vscode.ExtensionContext) {
         const currentModel = state.models.get(state.currentModel);
 
         return `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codx AI Chat</title>
-    <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
-            margin: 0; 
-            padding: 20px; 
-            background: var(--vscode-editor-background);
-            color: var(--vscode-editor-foreground);
-        }
-        .chat-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .model-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            padding: 10px;
-            background: var(--vscode-input-background);
-            border: 1px solid var(--vscode-input-border);
-            border-radius: 5px;
-        }
-        .model-info {
-            font-size: 0.9em;
-            color: var(--vscode-descriptionForeground);
-            margin-left: 10px;
-        }
-        .chat-messages {
-            height: 400px;
-            overflow-y: auto;
-            border: 1px solid var(--vscode-input-border);
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 15px;
-            background: var(--vscode-input-background);
-        }
-        .message {
-            margin-bottom: 15px;
-            padding: 10px;
-            border-radius: 8px;
-<<<<<<< HEAD
-            position: relative;
-=======
->>>>>>> ad03e7c710a40ce198d28028c20ed992420e0439
-        }
-        .user-message {
-            background: var(--vscode-button-background);
-            color: var(--vscode-button-foreground);
-            margin-left: 20%;
-        }
-        .ai-message {
-            background: var(--vscode-input-background);
-            border: 1px solid var(--vscode-input-border);
-            margin-right: 20%;
-        }
-        .error-message {
-            background: var(--vscode-errorBackground);
-            color: var(--vscode-errorForeground);
-            border: 1px solid var(--vscode-errorBorder);
-        }
-        .message-header {
-            font-size: 0.8em;
-            color: var(--vscode-descriptionForeground);
-            margin-bottom: 5px;
-        }
-        .input-container {
-            display: flex;
-            gap: 10px;
-        }
-        #prompt { 
-            flex: 1;
-            padding: 10px;
-            border: 1px solid var(--vscode-input-border);
-            border-radius: 5px;
-            background: var(--vscode-input-background);
-            color: var(--vscode-input-foreground);
-            font-family: inherit;
-            resize: vertical;
-            min-height: 60px;
-        }
-        .btn {
-            padding: 10px 20px;
-            background: var(--vscode-button-background);
-            color: var(--vscode-button-foreground);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .btn:hover {
-            background: var(--vscode-button-hoverBackground);
-        }
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .loading {
-            opacity: 0.7;
-        }
-        pre {
-            background: var(--vscode-textCodeBlock-background);
-            padding: 10px;
-            border-radius: 5px;
-            overflow-x: auto;
-            white-space: pre-wrap;
-        }
-        .switch-model-btn {
-            background: var(--vscode-button-secondaryBackground);
-            color: var(--vscode-button-secondaryForeground);
-            padding: 5px 10px;
-            font-size: 0.9em;
-        }
-        .switch-model-btn:hover {
-            background: var(--vscode-button-secondaryHoverBackground);
-        }
-        .action-buttons {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 5px;
-        }
-        .action-btn {
-            padding: 5px 10px;
-            font-size: 0.8em;
-        }
-        .copy-btn { background: #4CAF50; color: white; }
-        .apply-btn { background: #2196F3; color: white; }
-    </style>
-</head>
-<body>
-    <div class="chat-container">
-        <h2>Codx AI Chat</h2>
-        <div class="model-selector">
-            <strong>Model:</strong>
-            <span id="currentModel">${currentModel?.displayName || state.currentModel}</span>
-            <button class="btn switch-model-btn" onclick="switchModel()">Switch Model</button>
-            <div class="model-info" id="modelInfo">${currentModel?.description || ''}</div>
-        </div>
-        <div id="messages" class="chat-messages"></div>
-        <div class="input-container">
-            <textarea id="prompt" placeholder="Ask a coding question (mention files using [[path/to/file]])..." rows="3"></textarea>
-            <button id="sendBtn" class="btn" onclick="ask()">Send</button>
-        </div>
-    </div>
-    <script>
-        const vscode = acquireVsCodeApi();
-        const messagesContainer = document.getElementById('messages');
-        const promptInput = document.getElementById('prompt');
-        const sendBtn = document.getElementById('sendBtn');
-        const currentModelSpan = document.getElementById('currentModel');
-        const modelInfoDiv = document.getElementById('modelInfo');
-        
-        function addMessage(content, type = 'ai', model = null) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = \`message \${type}-message\`;
-            
-            let headerText = '';
-            if (type === 'user') {
-                headerText = 'You:';
-            } else if (type === 'error') {
-                headerText = 'Error:';
-            } else {
-                headerText = model ? \`Codx (\${model}):\` : 'Codx:';
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Codx AI Chat</title>
+                <style>
+                    body { 
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+                        margin: 0; 
+                        padding: 20px; 
+                        background: var(--vscode-editor-background);
+                        color: var(--vscode-editor-foreground);
+                    }
+                    .chat-container {
+                        max-width: 800px;
+                        margin: 0 auto;
+                    }
+                    .model-selector {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        margin-bottom: 15px;
+                        padding: 10px;
+                        background: var(--vscode-input-background);
+                        border: 1px solid var(--vscode-input-border);
+                        border-radius: 5px;
+                    }
+                    .model-info {
+                        font-size: 0.9em;
+                        color: var(--vscode-descriptionForeground);
+                        margin-left: 10px;
+                    }
+                    .chat-messages {
+                        height: 400px;
+                        overflow-y: auto;
+                        border: 1px solid var(--vscode-input-border);
+                        border-radius: 5px;
+                        padding: 15px;
+                        margin-bottom: 15px;
+                        background: var(--vscode-input-background);
+                    }
+                    .message {
+                        margin-bottom: 15px;
+                        padding: 10px;
+                        border-radius: 8px;
+                        position: relative;
+                    }
+                    .user-message {
+                        background: var(--vscode-button-background);
+                        color: var(--vscode-button-foreground);
+                        margin-left: 20%;
+                    }
+                    .ai-message {
+                        background: var(--vscode-input-background);
+                        border: 1px solid var(--vscode-input-border);
+                        margin-right: 20%;
+                    }
+                    .error-message {
+                        background: var(--vscode-errorBackground);
+                        color: var(--vscode-errorForeground);
+                        border: 1px solid var(--vscode-errorBorder);
+                    }
+                    .message-header {
+                        font-size: 0.8em;
+                        color: var(--vscode-descriptionForeground);
+                        margin-bottom: 5px;
+                    }
+                    .input-container {
+                        display: flex;
+                        gap: 10px;
+                    }
+                    #prompt { 
+                        flex: 1;
+                        padding: 10px;
+                        border: 1px solid var(--vscode-input-border);
+                        border-radius: 5px;
+                        background: var(--vscode-input-background);
+                        color: var(--vscode-input-foreground);
+                        font-family: inherit;
+                        resize: vertical;
+                        min-height: 60px;
+                    }
+                    .btn {
+                        padding: 10px 20px;
+                        background: var(--vscode-button-background);
+                        color: var(--vscode-button-foreground);
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-family: inherit;
+                    }
+                    .btn:hover {
+                        background: var(--vscode-button-hoverBackground);
+                    }
+                    .btn:disabled {
+                        opacity: 0.5;
+                        cursor: not-allowed;
+                    }
+                    .loading {
+                        opacity: 0.7;
+                    }
+                    pre {
+                        background: var(--vscode-textCodeBlock-background);
+                        padding: 10px;
+                        border-radius: 5px;
+                        overflow-x: auto;
+                        white-space: pre-wrap;
+                    }
+                    .switch-model-btn {
+                        background: var(--vscode-button-secondaryBackground);
+                        color: var(--vscode-button-secondaryForeground);
+                        padding: 5px 10px;
+                        font-size: 0.9em;
+                    }
+                    .switch-model-btn:hover {
+                        background: var(--vscode-button-secondaryHoverBackground);
+                    }
+                    .action-buttons {
+                        position: absolute;
+                        top: 10px;
+                        right: 10px;
+                        display: flex;
+                        gap: 5px;
+                    }
+                    .action-btn {
+                        padding: 5px 10px;
+                        font-size: 0.8em;
+                    }
+                    .copy-btn { background: #4CAF50; color: white; }
+                    .apply-btn { background: #2196F3; color: white; }
+                </style>
+            </head>
+            <body>
+                <div class="chat-container">
+                    <h2>Codx AI Chat</h2>
+                    <div class="model-selector">
+                        <strong>Model:</strong>
+                        <span id="currentModel">${currentModel?.displayName || state.currentModel}</span>
+                        <button class="btn switch-model-btn" onclick="switchModel()">Switch Model</button>
+                        <div class="model-info" id="modelInfo">${currentModel?.description || ''}</div>
+                    </div>
+                    <div id="messages" class="chat-messages"></div>
+                    <div class="input-container">
+                        <textarea id="prompt" placeholder="Ask a coding question (mention files using [[path/to/file]])..." rows="3"></textarea>
+                        <button id="sendBtn" class="btn" onclick="ask()">Send</button>
+                    </div>
+                </div>
+                <script>
+                    const vscode = acquireVsCodeApi();
+                    const messagesContainer = document.getElementById('messages');
+                    const promptInput = document.getElementById('prompt');
+                    const sendBtn = document.getElementById('sendBtn');
+                    const currentModelSpan = document.getElementById('currentModel');
+                    const modelInfoDiv = document.getElementById('modelInfo');
+                    
+                    function addMessage(content, type = 'ai', model = null) {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = \`message \${type}-message\`;
+                        
+                        let headerText = '';
+                        if (type === 'user') {
+                            headerText = 'You:';
+                        } else if (type === 'error') {
+                            headerText = 'Error:';
+                        } else {
+                            headerText = model ? \`Codx (\${model}):\` : 'Codx:';
+                        }
+                        
+                        const headerDiv = document.createElement('div');
+                        headerDiv.className = 'message-header';
+                        headerDiv.textContent = headerText;
+                        
+                        const contentDiv = document.createElement('div');
+                        if (type === 'user' || type === 'error') {
+                            contentDiv.innerHTML = escapeHtml(content);
+                        } else {
+                            contentDiv.innerHTML = formatResponse(content);
+                            const actionButtons = document.createElement('div');
+                            actionButtons.className = 'action-buttons';
+                            actionButtons.innerHTML = \`
+                                <button class="btn action-btn copy-btn" onclick="copyToClipboard(this)">Copy</button>
+                                <button class="btn action-btn apply-btn" onclick="applyChanges(this)">Apply</button>
+                            \`;
+                            messageDiv.appendChild(actionButtons);
+                        }
+                        
+                        messageDiv.appendChild(headerDiv);
+                        messageDiv.appendChild(contentDiv);
+                        messagesContainer.appendChild(messageDiv);
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                    }
+                    
+                    function formatResponse(content) {
+                        let formatted = escapeHtml(content);
+                        formatted = formatted.replace(/\`\`\`([\\s\\S]*?)\`\`\`/g, '<pre><code>$1</code></pre>');
+                        formatted = formatted.replace(/\`([^\`]+)\`/g, '<code style="background: var(--vscode-textCodeBlock-background); padding: 2px 4px; border-radius: 3px;">$1</code>');
+                        formatted = formatted.replace(/\\n/g, '<br>');
+                        return formatted;
+                    }
+                    
+                    function escapeHtml(text) {
+                        const div = document.createElement('div');
+                        div.textContent = text;
+                        return div.innerHTML;
+                    }
+                    
+                    function copyToClipboard(btn) {
+                        const messageDiv = btn.closest('.message');
+                        const contentDiv = messageDiv.querySelector('div:not(.message-header):not(.action-buttons)');
+                        navigator.clipboard.writeText(contentDiv.textContent);
+                        vscode.postMessage({ command: 'copyResponse', text: 'Response copied to clipboard!' });
+                    }
+                    
+                    function applyChanges(btn) {
+                        const messageDiv = btn.closest('.message');
+                        const contentDiv = messageDiv.querySelector('div:not(.message-header):not(.action-buttons)');
+                        vscode.postMessage({ command: 'applyChanges', text: contentDiv.textContent });
+                    }
+                    
+                    function ask() {
+                        const text = promptInput.value.trim();
+                        if (!text) return;
+                        
+                        addMessage(text, 'user');
+                        promptInput.value = '';
+                        sendBtn.disabled = true;
+                        sendBtn.textContent = 'Sending...';
+                        messagesContainer.classList.add('loading');
+                        
+                        vscode.postMessage({ command: 'ask', text });
+                    }
+                    
+                    function switchModel() {
+                        vscode.postMessage({ command: 'switchModel' });
+                    }
+                    
+                    function resetUI() {
+                        sendBtn.disabled = false;
+                        sendBtn.textContent = 'Send';
+                        messagesContainer.classList.remove('loading');
+                    }
+                    
+                    function updateModelDisplay(modelName, modelId) {
+                        currentModelSpan.textContent = modelName;
+                    }
+                    
+                    promptInput.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault();
+                            ask();
+                        }
+                    });
+                    
+                    window.addEventListener('message', event => {
+                        const msg = event.data;
+                        
+                        if (msg.type === 'response') {
+                            resetUI();
+                            addMessage(msg.text, 'ai', msg.model);
+                        } else if (msg.type === 'error') {
+                            resetUI();
+                            addMessage(msg.text, 'error');
+                        } else if (msg.type === 'modelUpdate') {
+                            updateModelDisplay(msg.model, msg.modelId);
+                        }
+                    });
+                    
+                    addMessage('Hello! I\\'m Codx, your AI coding assistant. Ask me anything about programming, code review, debugging, or any coding-related questions! Use [[path/to/file]] to reference files.', 'ai', currentModelSpan.textContent);
+                    
+                    vscode.postMessage({ command: 'getCurrentModel' });
+                </script>
+            </body>
+            </html>`;
             }
-            
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'message-header';
-            headerDiv.textContent = headerText;
-            
-            const contentDiv = document.createElement('div');
-            if (type === 'user' || type === 'error') {
-                contentDiv.innerHTML = escapeHtml(content);
-            } else {
-                contentDiv.innerHTML = formatResponse(content);
-                const actionButtons = document.createElement('div');
-                actionButtons.className = 'action-buttons';
-                actionButtons.innerHTML = `
-                    <button class="btn action-btn copy-btn" onclick="copyToClipboard(this)">Copy</button>
-                    <button class="btn action-btn apply-btn" onclick="applyChanges(this)">Apply</button>
-                `;
-                messageDiv.appendChild(actionButtons);
-            }
-            
-            messageDiv.appendChild(headerDiv);
-            messageDiv.appendChild(contentDiv);
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-        
-        function formatResponse(content) {
-            let formatted = escapeHtml(content);
-            formatted = formatted.replace(/\`\`\`([\\s\\S]*?)\`\`\`/g, '<pre><code>$1</code></pre>');
-            formatted = formatted.replace(/\`([^\`]+)\`/g, '<code style="background: var(--vscode-textCodeBlock-background); padding: 2px 4px; border-radius: 3px;">$1</code>');
-            formatted = formatted.replace(/\\n/g, '<br>');
-            return formatted;
-        }
-        
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-        
-        function copyToClipboard(btn) {
-            const messageDiv = btn.closest('.message');
-            const contentDiv = messageDiv.querySelector('div:not(.message-header):not(.action-buttons)');
-            navigator.clipboard.writeText(contentDiv.textContent);
-            vscode.postMessage({ command: 'copyResponse', text: 'Response copied to clipboard!' });
-        }
-        
-        function applyChanges(btn) {
-            const messageDiv = btn.closest('.message');
-            const contentDiv = messageDiv.querySelector('div:not(.message-header):not(.action-buttons)');
-            vscode.postMessage({ command: 'applyChanges', text: contentDiv.textContent });
-        }
-        
-        function ask() {
-            const text = promptInput.value.trim();
-            if (!text) return;
-            
-            addMessage(text, 'user');
-            promptInput.value = '';
-            sendBtn.disabled = true;
-            sendBtn.textContent = 'Sending...';
-            messagesContainer.classList.add('loading');
-            
-            vscode.postMessage({ command: 'ask', text });
-        }
-        
-        function switchModel() {
-            vscode.postMessage({ command: 'switchModel' });
-        }
-        
-        function resetUI() {
-            sendBtn.disabled = false;
-            sendBtn.textContent = 'Send';
-            messagesContainer.classList.remove('loading');
-        }
-        
-        function updateModelDisplay(modelName, modelId) {
-            currentModelSpan.textContent = modelName;
-        }
-        
-        promptInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                ask();
-            }
-        });
-        
-        window.addEventListener('message', event => {
-            const msg = event.data;
-            
-            if (msg.type === 'response') {
-                resetUI();
-                addMessage(msg.text, 'ai', msg.model);
-            } else if (msg.type === 'error') {
-                resetUI();
-                addMessage(msg.text, 'error');
-            } else if (msg.type === 'modelUpdate') {
-                updateModelDisplay(msg.model, msg.modelId);
-            }
-        });
-        
-        addMessage('Hello! I\\'m Codx, your AI coding assistant. Ask me anything about programming, code review, debugging, or any coding-related questions! Use [[path/to/file]] to reference files.', 'ai', currentModelSpan.textContent);
-        
-        vscode.postMessage({ command: 'getCurrentModel' });
-    </script>
-</body>
-</html>`;
-    }
-
     const codeActionProvider = vscode.languages.registerCodeActionsProvider(
         { scheme: 'file', language: '*' },
         {

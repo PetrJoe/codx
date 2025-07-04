@@ -103,7 +103,7 @@ A powerful Visual Studio Code extension that integrates Mistral AI's Codestral m
 
 4. Install the created .vsix file with:
   ```bash
-   code --install-extension codx.vsix
+   code --install-extension codx-0.0.1.vsix
   ```
 
 ## ⚙️ Configuration

@@ -632,7 +632,10 @@ export async function activate(context: vscode.ExtensionContext) {
             margin-bottom: 15px;
             padding: 10px;
             border-radius: 8px;
+<<<<<<< HEAD
             position: relative;
+=======
+>>>>>>> ad03e7c710a40ce198d28028c20ed992420e0439
         }
         .user-message {
             background: var(--vscode-button-background);

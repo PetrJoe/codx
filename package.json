@@ -26,7 +26,8 @@
     "codestral"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onView:codx-activity-bar"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -41,67 +42,116 @@
         },
         "codx.model": {
           "type": "string",
-          "default": "codestral-latest",
+          "default": "codestral-2501",
           "enum": [
+            "codestral-2501",
             "codestral-latest",
-            "codestral-2405",
-            "mistral-large-latest"
+            "mistral-large-latest",
+            "mistral-small-latest",
+            "open-mistral-7b",
+            "open-mixtral-8x7b",
+            "open-mixtral-8x22b"
           ],
           "description": "Mistral AI model to use"
         },
         "codx.temperature": {
           "type": "number",
-          "default": 0.5,
+          "default": 0.7,
           "minimum": 0,
           "maximum": 1,
           "description": "Temperature for AI responses (0 = deterministic, 1 = creative)"
+        },
+        "codx.disableModelRecommendations": {
+          "type": "boolean",
+          "default": false,
+          "description": "Disable automatic model recommendations based on file type"
         }
       }
     },
     "commands": [
       {
+        "command": "codx.openChat",
+        "title": "Codx AI: Open Chat",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.selectModel",
+        "title": "Codx AI: Select Model",
+        "category": "Codx AI"
+      },
+      {
         "command": "codx.refactorCode",
-        "title": "Refactor Code",
+        "title": "Codx AI: Refactor Code",
         "category": "Codx AI"
       },
       {
         "command": "codx.explainCode",
-        "title": "Explain Code",
+        "title": "Codx AI: Explain Code",
         "category": "Codx AI"
       },
       {
         "command": "codx.formatCode",
-        "title": "Format Code",
+        "title": "Codx AI: Format Code",
         "category": "Codx AI"
       },
       {
         "command": "codx.fixCode",
-        "title": "Fix Code Issue",
+        "title": "Codx AI: Fix Code Issue",
         "category": "Codx AI"
       },
       {
         "command": "codx.askWithFileContext",
-        "title": "Ask with File Context",
+        "title": "Codx AI: Ask with File Context",
         "category": "Codx AI"
       },
       {
-        "command": "codx.openChat",
-        "title": "Open AI Chat",
+        "command": "codx.compareModels",
+        "title": "Codx AI: Compare Models",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.showModelInfo",
+        "title": "Codx AI: Show Model Info",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.statusBarMenu",
+        "title": "Codx AI: Status Bar Menu",
         "category": "Codx AI"
       },
       {
         "command": "codx.contextRefactor",
-        "title": "🤖 Refactor with AI",
+        "title": "🤖 Codx AI: Refactor with AI",
         "category": "Codx AI"
       },
       {
         "command": "codx.contextExplain",
-        "title": "🤖 Explain with AI",
+        "title": "🤖 Codx AI: Explain with AI",
         "category": "Codx AI"
       },
       {
         "command": "codx.contextFormat",
-        "title": "🤖 Format with AI",
+        "title": "🤖 Codx AI: Format with AI",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.quickRefactor",
+        "title": "Codx AI: Quick Refactor",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.quickExplain",
+        "title": "Codx AI: Quick Explain",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.quickFormat",
+        "title": "Codx AI: Quick Format",
+        "category": "Codx AI"
+      },
+      {
+        "command": "codx.quickChat",
+        "title": "Codx AI: Quick Chat",
         "category": "Codx AI"
       }
     ],
@@ -125,6 +175,12 @@
       ],
       "commandPalette": [
         {
+          "command": "codx.openChat"
+        },
+        {
+          "command": "codx.selectModel"
+        },
+        {
           "command": "codx.refactorCode"
         },
         {
@@ -140,7 +196,46 @@
           "command": "codx.askWithFileContext"
         },
         {
-          "command": "codx.openChat"
+          "command": "codx.compareModels"
+        },
+        {
+          "command": "codx.showModelInfo"
+        },
+        {
+          "command": "codx.statusBarMenu"
+        },
+        {
+          "command": "codx.quickRefactor",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "codx.quickExplain",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codx.quickFormat",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "codx.quickChat"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codx-activity-bar",
+          "title": "Codx AI",
+          "icon": "resources/codx-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codx-activity-bar": [
+        {
+          "id": "codx-main",
+          "name": "Codx AI",
+          "icon": "resources/codx-icon.svg"
         }
       ]
     },
@@ -167,6 +262,45 @@
         "key": "ctrl+alt+f",
         "mac": "cmd+alt+f",
         "when": "editorTextFocus"
+      },
+      {
+        "command": "codx.selectModel",
+        "key": "ctrl+alt+m",
+        "mac": "cmd+alt+m"
+      },
+      {
+        "command": "codx.compareModels",
+        "key": "ctrl+alt+c",
+        "mac": "cmd+alt+c",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codx.showModelInfo",
+        "key": "ctrl+alt+n",
+        "mac": "cmd+alt+n"
+      },
+      {
+        "command": "codx.quickRefactor",
+        "key": "ctrl+shift+alt+r",
+        "mac": "cmd+shift+alt+r",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "codx.quickExplain",
+        "key": "ctrl+shift+alt+e",
+        "mac": "cmd+shift+alt+e",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codx.quickFormat",
+        "key": "ctrl+shift+alt+f",
+        "mac": "cmd+shift+alt+f",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codx.quickChat",
+        "key": "ctrl+shift+alt+i",
+        "mac": "cmd+shift+alt+i"
       }
     ]
   },

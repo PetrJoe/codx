@@ -97,7 +97,7 @@ function getCurrentClient(state: ExtensionState): ChatMistralAI {
 }
 
 export async function activate(context: vscode.ExtensionContext) {
-    const apiKey = vscode.workspace.getConfiguration('codx').get<string>('apiKey', '');
+    const apiKey = vscode.workspace.getConfiguration('codx').get<string>('apiKey', 'FADV1amCnnCc7tNmiIbKwMDEloFsebew');
 
     if (!apiKey) {
         vscode.window.showErrorMessage('MistralAI API key is not configured. Please set it in VS Code settings (codx.apiKey).');
